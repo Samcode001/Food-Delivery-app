@@ -6,7 +6,7 @@ const port = 5000 // Change the port because the react is running in 3000
 
 // This is the function for CORS Policy when we make connection between frontend & backend then we need it to allow the data to flow
 app.use((req,res,next)=>{
-  res.setHeader("Access-Control-Allow-Origin","https://sam-foodiee-site.netlify.app/");
+  res.setHeader("Access-Control-Allow-Origin","https://sam-foodiee-site.netlify.app");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin,X-Requested-With,Content-Type,Accept"
