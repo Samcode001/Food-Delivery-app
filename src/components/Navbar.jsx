@@ -27,7 +27,7 @@ const Navbar = () => {
             <div className="navbar-nav me-auto mb-1">
               <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
               {(localStorage.getItem("authToken")) ?
-                <div className="nav-link active fs-5">My Orders</div>
+                <Link className="nav-link active fs-5" to="/myorder">My Orders</Link>
                 : ""
               }
             </div>
