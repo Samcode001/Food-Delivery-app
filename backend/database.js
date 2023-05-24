@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+const mongoString=process.env.mongoString;
 
 const mongoDB= async()=>{
-   await mongoose.connect('mongodb://127.0.0.1:27017/foodiee',{ useUnifiedTopology: true },{ useFindAndModify: false });
+   // console.log(mongoString);
+   await mongoose.connect(`${mongoString}`,{ useUnifiedTopology: true },{ useFindAndModify: false });
    console.log("connected");
 
    const fetched_food_data=await mongoose.connection.db.collection("food_items");
@@ -21,7 +24,7 @@ const mongoDB= async()=>{
 })
 }
 
-// mongoDB().catch(err=>{console.log(err)});
+mongoDB().catch(err=>{console.log(err)});
 
 module.exports=mongoDB;
 

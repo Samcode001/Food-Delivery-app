@@ -4,8 +4,10 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const jwtSecretString=process.env.jwtSecretString
 
-const jwtSecret = "Helloimsamnicetomeetyou";
+const jwtSecret = `${jwtSecretString}`;
 
 router.post("/createUser", [
     body("name"),
