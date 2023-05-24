@@ -1,55 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { Badge } from 'react-bootstrap';
-import Model from './Model';
+import Modal from './Modal';
 import Cart from '../screens/Cart';
-import { useCart } from './ContextReducer';
 
 const Navbar = () => {
-
+   
   const [cartView, setCartView] = useState(false);
 
-  let data=useCart();
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    navigate('/login');
-  }
-  return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-        <div className="container-fluid">
-          <Link className="navbar-brand fs-1 fst-italic" to="/">Foo<span className="danger">di</span>ee</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav me-auto mb-1">
-              <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
-              {(localStorage.getItem("authToken")) ?
-                <Link className="nav-link active fs-5" to="/myorder">My Orders</Link>
-                : ""
-              }
-            </div>
-            {(!localStorage.getItem("authToken")) ?
-              <div className='d-flex'>
-                <Link className="btn bg-white text-success mx-1" to="/login">Login</Link>
-                <Link className="btn bg-white text-success mx-1" to="/createuser">SignUP</Link>
-              </div>
-              :
-              <div>
-                <div className="btn bg-white text-success mx-1" onClick={()=>setCartView(true)}>My cart{"  "}
-                  <Badge pill bg='danger'>{data.length}</Badge>
+    const navigate=useNavigate();
+    const authToken=localStorage.getItem("authToken");
+    // console.log(authToken)
+
+    const handleLogout=()=>{
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("userEmail");
+        navigate("/login");
+    }
+
+    return (
+        <>
+            <header className='primary-header'>
+                <div className="container">
+                    <div className="nav-wrapper">
+                        <div className="left-nav flex">
+                            <Link to='/' className="primary-logo"><span>F<span className='invert'>OO</span>DIEE</span></Link>
+                            <nav className='display-sm-none'>
+                               
+                                {authToken? <ul className="primary-navigation flex">
+                                    <li><Link to="/">Home</Link></li>
+                                    <li><Link to="/myorder">My Orders</Link></li>
+                                </ul>:""}
+                            </nav>
+                        </div>
+                        <button style={{ display: "none" }} className='mobile-nav-toggle'><span className='visually-hidden'>Hamburger Menu</span></button>
+                        <div className='right-nav'>
+                           
+                            {authToken? <ul className="nav-button-area flex">
+                                <div className="display-md-none">
+                                    <li><Link to="/">Home</Link></li>
+                                    <li><Link to="/myorder">My Orders</Link></li>
+                                </div>
+                                <button className='btn'><Link to='#' className='login-btn'><div onClick={()=>setCartView(true)} >My cart</div></Link></button>
+                                {cartView?<Modal onClose={()=>setCartView(false)} > <Cart/></Modal>:null}
+                                <button className='btn'><Link to='/login' onClick={handleLogout} className='signup-btn'>Logout</Link></button>
+                            </ul>: <ul className="nav-button-area flex">
+                                <div className="display-md-none">
+                                    <li><Link to="/">Home</Link></li>
+                                    <li><a href="#">My Orders</a></li>
+                                </div>
+                                <button className='btn'><Link to='/login' className='login-btn'>Login</Link></button>
+                                <button className='btn'><Link to='/signup' className='signup-btn'>Sign Up</Link></button>
+                            </ul>}
+                        </div>
+                    </div>
                 </div>
-                {cartView ? <Model onClose={() => setCartView(false)}><Cart /></Model> : null}
-                <div className="btn bg-white text-danger mx-1" onClick={handleLogout} >Logout</div>
-              </div>
-            }
-          </div>
-        </div>
-      </nav>
-    </>
-  )
+            </header>
+        </>
+    )
 }
 
 export default Navbar

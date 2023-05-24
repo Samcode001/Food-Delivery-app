@@ -1,39 +1,49 @@
-import React,{useState} from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import './Login.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const [credentials, setCredentials] = useState(
-    {
-      name: "",
-      email: "",
-      password:"",
-      geoLocation:""
-    });
 
-    let navigate=useNavigate();
+  let navigate=useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/createuser", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
+  const [credentials, setCredentials] = useState({
+    name:"",
+    email:"",
+    password:"",
+    geoLocation:""
+  });
+
+  const [userExist, setUserExist] = useState(false);
+
+  const handleSubmit=async(e)=>{
+   e.preventDefault(); 
+    let response=await fetch("http://localhost:5000/api/createUser",{
+      method:"POST",
+      headers:{
+        'Content-Type':"application/json"
       },
-      body: JSON.stringify({
+      body:JSON.stringify({
         name:credentials.name,
         email:credentials.email,
         password:credentials.password,
         location:credentials.geoLocation
       })
-    });
-    
-    const json=await response.json();
-    console.log(json);
 
-    if(!json.success)
-    alert("Enter the Valid Credentials");
-    else
-    navigate('/login');
+    });
+ 
+    let json=await response.json();
+    // console.log(json);
+
+    if(json.error==="User already exist"){
+      return setUserExist(true);
+    }
+
+    if(!json.sucess){
+      return alert("Enter Valid Credentials");
+    }
+
+      navigate('/login');
+
   }
 
   const handleChange=(e)=>{
@@ -42,30 +52,32 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="container my-5">
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">Name</label>
-            <input type="text" className="form-control" name="name" value={credentials.name} onChange={handleChange} />
+    <div className="login-content">
+        <div className="container">
+            <div className="split">
+          <div className='content-side'>
+            <h1>We Deliver Happiness.</h1>
           </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={credentials.email} onChange={handleChange}/>
-            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" name="password" value={credentials.password} onChange={handleChange}/>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="geoLocation" className="form-label">Location</label>
-            <input type="text" className="form-control" id="exampleInputgeoLocation" name="geoLocation" value={credentials.geoLocation} onChange={handleChange}/>
-          </div>
-          <button type="submit" className="btn btn-success m-3">Submit</button>
-          <Link to='/login' className='btn btn-danger m-3'>Already a user </Link>
-        </form>
-      </div>
+           <div className="form-side">
+               <form onSubmit={handleSubmit}>
+                <input type="text" name='name' value={credentials.name} placeholder='Name' onChange={handleChange} />
+                <input type="email" name='email' value={credentials.email} placeholder='Username' onChange={handleChange} />
+                <div className='flex-column' style={{gap:"0.2rem"}}>
+                    <input type="password" name='password' value={credentials.password} placeholder='Password' onChange={handleChange}/>
+                  { userExist? <span>User already exist.</span> : <span>Password must be 8 charcters.</span>}
+                </div>
+                <input type="text" name='geoLocation' value={credentials.geoLocation} placeholder='location' onChange={handleChange} />
+                <div className="button-area">
+                    <button className="btn btn-invert" type='submit'>Create Account</button>
+                    <button className="btn btn-invert"><Link to='/login' className='shift-link'>Already a User</Link></button>
+                </div>
+               </form>
+           </div>
+            </div>
+        </div>
+    </div>
     </>
+
   )
 }
 

@@ -1,32 +1,33 @@
+import logo from './logo.svg';
 import './App.css';
-import Home from './screens/Home';
+
 import {
   BrowserRouter as Router,
   Routes, // The switch is updated into Routes now
   Route
 } from "react-router-dom";
+import Home from './screens/Home';
 import Login from './screens/Login';
-// These below import are only for working the carousel beacuse the bootstrap is wroking with some javascript that we dont have.
-import '../node_modules/bootstrap-dark-5/dist/css/bootstrap-dark.min.css'
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
-import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
 import SignUp from './screens/SignUp';
-import { CartProvider } from './components/ContextReducer';
-import MyOrder from './components/MyOrder';
+import { CartProvider } from './context/ContextReducer';
+import MyOrder from './components/Myorder';
+
+
 
 function App() {
   return (
+    <>
     <CartProvider>
-    <Router>
-      {/* <Home/>; */}
-     <Routes>
-      <Route exact path='/' element={<Home/>}></Route>
-      <Route exact path='/login' element={<Login/>}></Route>
-      <Route exact path='/createuser' element={<SignUp/>}></Route>
-      <Route exact path='/myorder' element={<MyOrder/>}></Route>
-     </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/signup' element={<SignUp />}></Route>
+          <Route exact path='/myorder' element={<MyOrder/>}></Route>
+        </Routes>
+      </Router>
     </CartProvider>
+    </>
   );
 }
 

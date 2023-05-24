@@ -1,0 +1,30 @@
+.cta-section{
+    position: relative;
+    background-color: var(--primary-color-green);
+    isolation: isolate;
+}
+.cta-section>.container{
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cta-section::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+background-image: url(../assets/bg-tablet-pattern.svg),url(../assets/bg-tablet-pattern.svg);
+background-repeat: no-repeat;
+background-position: -14rem 2rem,65rem -42rem;
+opacity: 0.4;
+z-index: -1;
+}
+
+.content{
+  font-size: 3rem;
+  max-width: 12ch;
+  color: white;
+  font-weight: 600;
+}
+

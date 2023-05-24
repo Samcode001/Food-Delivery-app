@@ -1,0 +1,23 @@
+
+.hero-section{
+    height: 600px;
+    width: auto;
+
+    background-image: linear-gradient(rgb(0 0 0 /0.4),rgb(0 0  0 /0.4)),url(../assets/hero-image-medium.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero-section>.container{
+    height: inherit;
+ display: flex;
+ justify-content: center;
+ align-items: flex-end;
+ padding-bottom: 4rem;
+}
+
+input{
+    background-color: rgba(255, 255, 255);
+  /* width: 40rem !important; */
+}

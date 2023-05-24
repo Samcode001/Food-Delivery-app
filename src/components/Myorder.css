@@ -1,0 +1,16 @@
+.card{
+    width: 100%;
+display: flex;
+flex-grow: 1;
+gap: 4rem;
+/* outline: 2px solid red; */
+margin-block: 1rem;
+font-size: 1.2 rem;
+color: var(--primary-color-green);;
+}
+
+#order-date{
+    font-size: 1.5rem;
+    color: rgb(201, 68, 68);
+    margin-block: 2rem;
+}

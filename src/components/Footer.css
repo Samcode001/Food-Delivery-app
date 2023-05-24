@@ -1,0 +1,48 @@
+.primary-footer{
+    padding-block: 4rem;
+    background-color: var(--footer-bg-color);
+}
+
+.footer-content{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 1rem;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.footer-logo>span{
+    color: white;
+    font-weight: 600;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    display: block;
+    text-align: center;
+}
+
+.footer-navigation{
+    columns: 2;
+ /* outline: 2px solid red; */
+}
+
+.footer-navigation a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+    display: block;
+    text-align: left;
+}
+
+.copyright-section{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+    gap: 1rem;
+}
+.copyright-section span{
+    color: white;
+}
+

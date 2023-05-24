@@ -1,15 +1,33 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <div className="col-md-4 d-flex align-items-center">
-        <Link to="/" className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-        </Link>
-        <span className="text-muted">© 2022 Foodiee, Inc</span>
-      </div>
-    </footer>
+    <>
+    <div className="primary-footer">
+        <div className="container">
+            <div className="footer-content">
+                <div className="footer-logo">
+                    <span>F<span style={{color:"#06c167"}}>OO</span>DIEE</span>
+                </div>
+                <div className="footer-navigation">
+                    <ul role='list'>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Carrers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div className="copyright-section">
+                    <button className='btn btn-invert footer-btn'>Get Started</button>
+                    <span>2023 Copyright © FOODIEE. All Rights Reserved</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </>
   )
 }
 

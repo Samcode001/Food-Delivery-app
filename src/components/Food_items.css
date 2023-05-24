@@ -1,0 +1,9 @@
+.food-items-section{
+    padding-block: 3rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* outline: 2px solid red; */
+}
