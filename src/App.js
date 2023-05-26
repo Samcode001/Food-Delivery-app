@@ -10,7 +10,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import { CartProvider } from './context/ContextReducer';
-import MyOrder from './components/Myorder';
+import MyOrder from './components/Myorder.jsx';
 
 
 
