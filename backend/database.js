@@ -4,7 +4,7 @@ const mongoString=process.env.mongoString;
 
 const mongoDB= async()=>{
    // console.log(mongoString);
-   await mongoose.connect(`${mongoString}`,{ useUnifiedTopology: true },{ useFindAndModify: false });
+   await mongoose.connect(`${mongoString}`,{ useUnifiedTopology: true });
    console.log("connected");
 
    const fetched_food_data=await mongoose.connection.db.collection("food_items");
