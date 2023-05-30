@@ -9,7 +9,7 @@ const Food_category = () => {
   const [currentCategory, setCurrentCategory] = useState("Biryani/Rice");
 
   const handleSubmit=async (e)=>{
-    let response=await fetch(`http://localhost:5000/api/fooditems`,{
+    let response=await fetch(`https://food-delivery-42zn.onrender.com/api/fooditems`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
