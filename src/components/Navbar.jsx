@@ -3,10 +3,12 @@ import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 import Cart from '../screens/Cart';
+import { useCart } from '../context/ContextReducer';
 
 const Navbar = () => {
    
   const [cartView, setCartView] = useState(false);
+  let data=useCart();
 
     const navigate=useNavigate();
     const authToken=localStorage.getItem("authToken");
@@ -41,7 +43,7 @@ const Navbar = () => {
                                     <li><Link to="/">Home</Link></li>
                                     <li><Link to="/myorder">My Orders</Link></li>
                                 </div>
-                                <button className='btn'><Link to='#' className='login-btn'><div onClick={()=>setCartView(true)} >My cart</div></Link></button>
+                                <button className='btn'><Link to='#' className='login-btn'><div onClick={()=>setCartView(true)} >My cart<span style={{backgroundColor:"red",color:"white",marginInlineStart:"6px",borderRadius:"100%",fontSize:'14px',padding:"3px"}}>{data.length}</span></div></Link></button>
                                 {cartView?<Modal onClose={()=>setCartView(false)} > <Cart/></Modal>:null}
                                 <button className='btn'><Link to='/login' onClick={handleLogout} className='signup-btn'>Logout</Link></button>
                             </ul>: <ul className="nav-button-area flex">

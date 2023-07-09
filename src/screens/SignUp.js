@@ -17,7 +17,7 @@ const SignUp = () => {
 
   const handleSubmit=async(e)=>{
    e.preventDefault(); 
-    let response=await fetch("https://food-delivery-42zn.onrender.com/api/createUser",{
+    let response=await fetch("http://localhost:5000/api/createUser",{
       method:"POST",
       headers:{
         'Content-Type':"application/json"

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import image from '../assets/pizza-image.jpg';
 import './Food_card.css';
 import { useCart, useDispatchCart } from '../context/ContextReducer';
+import Add_Notification from './Add_Notification';
 
 const Food_card = (props) => {
 
@@ -15,9 +15,17 @@ const Food_card = (props) => {
 
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
+  const [AddNotification, setAddNotification] = useState(false)
 
 
   const handleAddToCart = async () => {
+
+    setAddNotification(true)
+    console.log(AddNotification)
+    setTimeout(() => {
+      setAddNotification(false)
+      console.log(AddNotification)
+    }, 2000);
 
     let food = []
     for (const item of data) {
@@ -26,15 +34,13 @@ const Food_card = (props) => {
         break;
       }
     }
-    console.log(food)
-    console.log(new Date())
     if (food !== []) {
       if (food.size === size) {
         await dispatch({ type: "UPDATE", id: foodItem._id, price: finalPrice, qty: qty })
         return
       }
       else if (food.size !== size) {
-        await dispatch({ type: "ADD", id: foodItem._id, img: props.foodItem.img, name: foodItem.name, price: finalPrice, qty: qty, size: size})
+        await dispatch({ type: "ADD", id: foodItem._id, img: props.foodItem.img, name: foodItem.name, price: finalPrice, qty: qty, size: size })
         return
       }
       return
@@ -42,10 +48,11 @@ const Food_card = (props) => {
 
     await dispatch({ type: "ADD", id: foodItem._id, img: props.foodItem.img, name: foodItem.name, price: finalPrice, qty: qty, size: size })
 
+    
 
   }
-  
-  let finalPrice = qty * parseInt(options[size]); 
+
+  let finalPrice = qty * parseInt(options[size]);
   useEffect(() => {
     setSize(priceRef.current.value) // Setting the finalprice in each render
   }, [])
@@ -73,6 +80,7 @@ const Food_card = (props) => {
           <div className="btn add-to-cart-btn btn-invert" onClick={handleAddToCart}>Add to Cart</div>
         </div>
       </div>
+      {AddNotification === true ? <Add_Notification /> : ""}
     </>
   )
 }

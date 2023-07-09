@@ -1,6 +1,7 @@
 import React from 'react'
 import './Cart.css'
 import { useCart, useDispatchCart } from '../context/ContextReducer';
+import Payment from '../components/payment';
 
 const Cart = () => {
 
@@ -21,7 +22,7 @@ const Cart = () => {
 
     const handleCheckOut = async () => {
         let userEmail = localStorage.getItem('userEmail')
-        let response = await fetch(`https://food-delivery-42zn.onrender.com/api/orderData`, {
+        let response = await fetch(`http://localhost:5000/api/orderData`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,11 +30,13 @@ const Cart = () => {
             body: JSON.stringify({
                 order_data: data,
                 email: userEmail,
-                order_date: new Date().toDateString()
+                order_date: new Date().toDateString(),
+                total:totalPrice
             })
         });
+        <Payment/>
         if (response.status === 200) {
-            console.log(data);
+            // console.log(data);
             dispatch({ type: 'DROP' });
         }
 
