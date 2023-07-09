@@ -9,7 +9,7 @@ const Food_category = () => {
   const [currentCategory, setCurrentCategory] = useState("Biryani/Rice");
 
   const handleSubmit=async (e)=>{
-    let response=await fetch(`http://localhost:5000/api/fooditems`,{
+    let response=await fetch(`https://food-delivery-42zn.onrender.com/api/fooditems`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
@@ -34,7 +34,7 @@ const Food_category = () => {
     <div className="container">
       <div className="food-category-section">
             <ul className="category-list" role='list'>
-             { foodCategory.length===0? <h1 style={{color:"red",fontWeight:"600",fontSize:"4rem"}}>Loading Please wait Server is slow...</h1>: foodCategory.map((data)=>{
+             { foodCategory.length===0? <h1 style={{color:"red",fontWeight:"600",fontSize:"4rem"}}>Server Loading...</h1>: foodCategory.map((data)=>{
                 return(
                   <li key={data._id}><a style={{cursor:"pointer"}} onClick={(e)=>setCurrentCategory(e.target.innerHTML)}>{data.CategoryName}</a></li>
                 )
