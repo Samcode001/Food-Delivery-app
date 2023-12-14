@@ -17,7 +17,7 @@ const SignUp = () => {
 
   const handleSubmit=async(e)=>{
    e.preventDefault(); 
-    let response=await fetch("https://food-delivery-42zn.onrender.com/api/createUser",{
+    let response=await fetch("http://localhost:5000/api/signup",{
       method:"POST",
       headers:{
         'Content-Type':"application/json"
@@ -31,18 +31,19 @@ const SignUp = () => {
 
     });
  
-    let json=await response.json();
+    let data=await response.json();
     // console.log(json);
 
-    if(json.error==="User already exist"){
+    if(data.message==="User already Exist"){
       return setUserExist(true);
     }
 
-    if(!json.sucess){
-      return alert("Enter Valid Credentials");
-    }
+    // if(data.status!==200){
+    //   return alert("Enter Valid Credentials");
+    // }
 
       navigate('/login');
+      localStorage.setItem('token',data.token)
 
   }
 
