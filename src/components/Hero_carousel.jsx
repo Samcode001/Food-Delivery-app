@@ -1,5 +1,5 @@
 import React, { useState ,useReducer} from 'react'
-import './Hero_carousel.css';
+import '../components/styles/Hero_carousel.css';
 import Food_items from './Food_items';
 import { useSearchContext } from '../context/searchContext';
 

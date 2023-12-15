@@ -14,7 +14,8 @@
     content: "";
     position: absolute;
     inset: 0;
-background-image: url(../assets/bg-tablet-pattern.svg),url(../assets/bg-tablet-pattern.svg);
+background-image: url(../../assets/bg-tablet-pattern.svg),url(../../assets/bg-tablet-pattern.svg);
+/* background-image: url(../../assets/bg-tablet-pattern.svg); */
 background-repeat: no-repeat;
 background-position: -14rem 2rem,65rem -42rem;
 opacity: 0.4;

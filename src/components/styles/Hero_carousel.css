@@ -3,7 +3,7 @@
     height: 600px;
     width: auto;
 
-    background-image: linear-gradient(rgb(0 0 0 /0.4),rgb(0 0  0 /0.4)),url(../assets/hero-image-medium.jpg);
+    background-image: linear-gradient(rgb(0 0 0 /0.4),rgb(0 0  0 /0.4)),url(../../assets/hero-image-medium.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

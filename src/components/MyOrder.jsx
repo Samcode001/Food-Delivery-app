@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar';
 import Footer from './Footer';
-import './Myorder.css'
+import '../components/styles/Myorder.css'
 
 const MyOrder = () => {
 

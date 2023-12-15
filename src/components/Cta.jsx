@@ -1,5 +1,5 @@
 import React from 'react';
-import './Cta.css';
+import '../components/styles/Cta.css'
 
 const Cta = () => {
     return (

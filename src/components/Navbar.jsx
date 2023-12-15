@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Navbar.css';
+import '../components/styles/Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 import Cart from '../screens/Cart';

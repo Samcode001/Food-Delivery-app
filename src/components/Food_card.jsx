@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './Food_card.css';
+import '../components/styles/Food_card.css';
 import { useCart, useDispatchCart } from '../context/ContextReducer';
 import Add_Notification from './Add_Notification';
 

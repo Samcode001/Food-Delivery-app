@@ -9,19 +9,21 @@ const paymentRoutes=require('./Routes/payment')
 const mongoose = require('mongoose');
 require('dotenv').config();
 const mongoString=process.env.mongoString;
+const cors=require('cors')
 
 // mongoDB();
 
 // This is the function for CORS Policy when we make connection between frontend & backend then we need it to allow the data to flow
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin","*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin,X-Requested-With,Content-Type,Accept"
-    );
-    next();//Middleware function
-  })
+// app.use((req,res,next)=>{
+//     res.setHeader("Access-Control-Allow-Origin","*");
+//     res.header(
+//       "Access-Control-Allow-Headers",
+//       "Origin,X-Requested-With,Content-Type,Accept"
+//     );
+//     next();//Middleware function
+//   })
 
+app.use(cors());
 app.use(express.json());
 app.use('/api',userRoutes);
 app.use('/api',dataRoutes);

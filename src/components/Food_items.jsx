@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Food_card from './Food_card';
-import './Food_items.css';
+import '../components/styles/Food_items.css';
 import { useSearchContext } from '../context/searchContext';
 
 const Food_items = (props) => {

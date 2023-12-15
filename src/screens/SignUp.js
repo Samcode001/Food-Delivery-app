@@ -38,9 +38,9 @@ const SignUp = () => {
       return setUserExist(true);
     }
 
-    // if(data.status!==200){
-    //   return alert("Enter Valid Credentials");
-    // }
+    if(response.status!==200){
+      return alert("please fill All fields Correct");
+    }
 
       navigate('/login');
       localStorage.setItem('token',data.token)

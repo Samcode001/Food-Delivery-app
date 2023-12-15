@@ -26,8 +26,8 @@ const Login = () => {
     });
 
     const data = await response.json();
-    if (data.status === 200) {
-      localStorage.setItem("authToken", data.token);
+    if (response.status === 200) {
+      localStorage.setItem("token", data.token);
       localStorage.setItem("userEmail", credentials.email);
       navigate("/");
     } else {
