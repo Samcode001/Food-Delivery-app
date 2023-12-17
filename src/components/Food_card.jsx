@@ -10,6 +10,7 @@ const Food_card = (props) => {
   let foodItem = props.foodItem;
 
   let data = useCart();
+  console.log(data);
   let dispatch = useDispatchCart();
   let priceRef = useRef();
 
@@ -21,10 +22,10 @@ const Food_card = (props) => {
   const handleAddToCart = async () => {
 
     setAddNotification(true)
-    console.log(AddNotification)
+    // console.log(AddNotification)
     setTimeout(() => {
       setAddNotification(false)
-      console.log(AddNotification)
+      // console.log(AddNotification)
     }, 2000);
 
     let food = []

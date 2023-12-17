@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 // const { default: Food_items } = require("../../src/components/Food_items");
 const router = express.Router();
 
-const foodModel = mongoose.model(   // making the models to fetch the data from the collection of the mongoDb
+const foodModel = mongoose.model(
+  // making the models to fetch the data from the collection of the mongoDb
   "food_items",
   new mongoose.Schema({}),
   "food_items"

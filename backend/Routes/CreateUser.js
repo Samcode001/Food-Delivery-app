@@ -130,7 +130,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", authenticateJwt, async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -149,5 +149,9 @@ router.post("/login", authenticateJwt, async (req, res) => {
     res.status(500).send("Error in Route");
   }
 });
+
+router.get('/me',authenticateJwt,async(req,res)=>{
+     res.status(200).send("User Available");
+})
 
 module.exports = router;
