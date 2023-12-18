@@ -8,19 +8,22 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import { CartProvider } from "./context/ContextReducer";
 import MyOrder from "./components/Myorder";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
     <>
       <CartProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
-            <Route exact path="/myorder" element={<MyOrder />}></Route>
-          </Routes>
-        </Router>
+        <RecoilRoot>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/signup" element={<SignUp />}></Route>
+              <Route exact path="/myorder" element={<MyOrder />}></Route>
+            </Routes>
+          </Router>
+        </RecoilRoot>
       </CartProvider>
     </>
   );

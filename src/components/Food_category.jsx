@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../components/styles/Food_category.css";
 import Food_items from "./Food_items";
+import { useRecoilState } from "recoil";
+import { categoryState } from "../store/foodCategory";
+import { foodDataState } from "../store/foodItem";
 
 const Food_category = () => {
-  const [foodCategory, setfoodCategory] = useState([]);
-  const [foodData, setFoodData] = useState([]);
+  const [foodCategory, setfoodCategory] = useRecoilState(categoryState);
+  const [foodData, setFoodData] = useRecoilState(foodDataState);
   const [currentCategory, setCurrentCategory] = useState("Biryani/Rice");
 
   const handleSubmit = async (e) => {

@@ -34,7 +34,7 @@ const Cart = () => {
                 total:totalPrice
             })
         });
-        <Payment/>
+        // <Payment/>
         if (response.status === 200) {
             // console.log(data);
             dispatch({ type: 'DROP' });

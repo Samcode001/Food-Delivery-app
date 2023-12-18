@@ -16,7 +16,7 @@ const Food_items = (props) => {
         <div className="food-items-section">
        {
           foodData.filter((item)=>(item.CategoryName===currentCategory)).map((data)=>{
-           return( <Food_card key={data._id}  foodItem={data} options={data.options[0]} />);
+           return( <Food_card key={data._id} id={data._id}  foodItem={data} options={data.options[0]} />);
           })
        }
         </div>
