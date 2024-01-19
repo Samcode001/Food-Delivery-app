@@ -21,34 +21,81 @@ const Food_card = ({ options, id, foodItem }) => {
   const [AddNotification, setAddNotification] = useState(false);
 
   const [order, setOrder] = useRecoilState(orderState);
-  const foodItems=useRecoilValue(foodDataState)
+  const foodItems = useRecoilValue(foodDataState);
+
+  // const handleAddToCart = async () => {
+  //   setOrder((prevOrder) => [...prevOrder, id]);
+
+  //   setAddNotification(true);
+  //   // console.log(AddNotification)
+  //   setTimeout(() => {
+  //     setAddNotification(false);
+  //     // console.log(AddNotification)
+  //   }, 2000);
+
+  //   let data=[];
+  //    data=foodItems.filter((element,index)=>element._id===order);
+  //   foodItems.forEach((element,index) => {
+  //         element._id===order[index]
+  //   });
+  //   console.log(data,order,foodItems);
+
+  //   let food = [];
+  //   for (const item of data) {
+  //     if (item.id === foodItem._id) {
+  //       food = item;
+  //       break;
+  //     }
+  //   }
+  //   if (food !== []) {
+  //     if (food.size === size) {
+  //       await dispatch({
+  //         type: "UPDATE",
+  //         id: foodItem._id,
+  //         price: finalPrice,
+  //         qty: qty,
+  //       });
+  //       return;
+  //     } else if (food.size !== size) {
+  //       await dispatch({
+  //         type: "ADD",
+  //         id: foodItem._id,
+  //         img: foodItem.img,
+  //         name: foodItem.name,
+  //         price: finalPrice,
+  //         qty: qty,
+  //         size: size,
+  //       });
+  //       return;
+  //     }
+  //     return;
+  //   }
+
+  //   await dispatch({
+  //     type: "ADD",
+  //     id: foodItem._id,
+  //     img: foodItem.img,
+  //     name: foodItem.name,
+  //     price: finalPrice,
+  //     qty: qty,
+  //     size: size,
+  //   });
+  // };
 
   const handleAddToCart = async () => {
     setOrder((prevOrder) => [...prevOrder, id]);
 
     setAddNotification(true);
-    // console.log(AddNotification)
     setTimeout(() => {
       setAddNotification(false);
-      // console.log(AddNotification)
     }, 2000);
 
-     
-    let data=[];
-    // const data=foodItems.filter((element,index)=>element._id===order);
-    foodItems.forEach((element,index) => {
-          element._id===order[index]
-    });
-    console.log(data,order,foodItems);
+    const data = foodItems.filter((element) => element._id === id);
+    console.log(data, order, foodItems);
 
-    let food = [];
-    for (const item of data) {
-      if (item.id === foodItem._id) {
-        food = item;
-        break;
-      }
-    }
-    if (food !== []) {
+    let food = data.find((item) => item.id === foodItem._id);
+
+    if (food) {
       if (food.size === size) {
         await dispatch({
           type: "UPDATE",
@@ -56,8 +103,7 @@ const Food_card = ({ options, id, foodItem }) => {
           price: finalPrice,
           qty: qty,
         });
-        return;
-      } else if (food.size !== size) {
+      } else {
         await dispatch({
           type: "ADD",
           id: foodItem._id,
@@ -67,20 +113,18 @@ const Food_card = ({ options, id, foodItem }) => {
           qty: qty,
           size: size,
         });
-        return;
       }
-      return;
+    } else {
+      await dispatch({
+        type: "ADD",
+        id: foodItem._id,
+        img: foodItem.img,
+        name: foodItem.name,
+        price: finalPrice,
+        qty: qty,
+        size: size,
+      });
     }
-
-    await dispatch({
-      type: "ADD",
-      id: foodItem._id,
-      img: foodItem.img,
-      name: foodItem.name,
-      price: finalPrice,
-      qty: qty,
-      size: size,
-    });
   };
 
   let finalPrice = qty * parseInt(options[size]);

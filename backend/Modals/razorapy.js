@@ -1,5 +1,20 @@
-const Razorpay = require('razorpay');
-const razorpay = new Razorpay({ key_id: 'rzp_test_PN5HQVJ4MaGpP6', key_secret: 'eelaSU5LjO4Kj1AdnyXh73hR' })
+const mongoose = require("mongoose");
 
+const paymentSchema = new mongoose.Schema({
+  razorpay_order_id: {
+    type: String,
+    required: true,
+  },
+  razorpay_payment_id: {
+    type: String,
+    required: true,
+  },
+  razorpay_signature: {
+    type: String,
+    required: true,
+  },
+});
 
-module.exports=razorpay
+const Payment = mongoose.model("Payment", paymentSchema);
+
+module.exports = Payment;

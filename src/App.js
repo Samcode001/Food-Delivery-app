@@ -8,6 +8,7 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import { CartProvider } from "./context/ContextReducer";
 import MyOrder from "./components/Myorder";
+import OrderSuccess from './components/OrderSuccess.jsx'
 import { RecoilRoot } from "recoil";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path="/login" element={<Login />}></Route>
               <Route path="/signup" element={<SignUp />}></Route>
               <Route exact path="/myorder" element={<MyOrder />}></Route>
+              <Route exact path="/paymentsuccess" element={<OrderSuccess />}></Route>
             </Routes>
           </Router>
         </RecoilRoot>

@@ -2,6 +2,8 @@ import React from 'react'
 import './Cart.css'
 import { useCart, useDispatchCart } from '../context/ContextReducer';
 import Payment from '../components/payment';
+import axios from 'axios';
+
 
 const Cart = () => {
 
@@ -34,13 +36,47 @@ const Cart = () => {
                 total:totalPrice
             })
         });
-        // <Payment/>
         if (response.status === 200) {
             // console.log(data);
             dispatch({ type: 'DROP' });
         }
 
     }
+
+    const handlePayment = async (amount) => {
+        const {
+          data: { key },
+        } = await axios.get("http://localhost:5000/getkey");
+        const {
+          data: { order },
+        } = await axios.post("http://localhost:5000/checkout", {
+          amount,
+        });
+    
+        const options = {
+          key: key, // Enter the Key ID generated from the Dashboard
+          amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          currency: "INR",
+          name: "Foodiee Corp",
+          description: "Test Transaction",
+          image: "https://example.com/your_logo",
+          order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          callback_url: "http://localhost:5000/paymentVerification",
+          prefill: {
+            name: "Gaurav Kumar",
+            email: "gaurav.kumar@example.com",
+            contact: "9000090000",
+          },
+          notes: {
+            address: "Razorpay Corporate Office",
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+        const razor = new window.Razorpay(options);
+        razor.open();
+      };
 
 
     let totalPrice = data.reduce((total, food) => total + food.price, 0)
@@ -76,7 +112,11 @@ const Cart = () => {
                     </table>
                     <div><h1 className='fs-2' style={{fontSize:'1.5rem',color:'rgb(201, 68, 68)',marginBlock:'2rem'}}>Total Price: {totalPrice}/-</h1></div>
                     <div>
-                        <button className='btn btn-invert' onClick={handleCheckOut}  > Check Out </button>
+                        <button className='btn btn-invert' onClick={()=>{
+                            
+                            handleCheckOut()
+                            handlePayment(totalPrice)
+                            }}  > Check Out </button>
                     </div>
 
                 </div>
