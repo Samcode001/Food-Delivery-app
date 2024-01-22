@@ -1,36 +1,43 @@
 const express = require("express");
 const authenticateJwt = require("../auth/authenticateJwt");
 const mongoose = require("mongoose");
-// const { default: Food_items } = require("../../src/components/Food_items");
 const router = express.Router();
 
-const foodModel = mongoose.model(
-  // making the models to fetch the data from the collection of the mongoDb
-  "food_items",
-  new mongoose.Schema({}),
-  "food_items"
-);
-const categoryModel = mongoose.model(
-  "food_category",
-  new mongoose.Schema({}),
-  "food_category"
-);
+// A dictionary to store created models
+const models = {};
 
-router.get("/fooditems", async (req, res) => {
+router.post("/fooditems", async (req, res) => {
   try {
-    //     In Mongoose, the exec() method is used to execute a query and return a promise.
+    const { categoryName, dataName } = req.body;
+
+    // Validate that the model names are not empty
+    if (!categoryName || !dataName) {
+      return res.status(400).send("Invalid model names");
+    }
+
+    // Create or reuse models based on the provided names
+    const foodModel = getModel(dataName);
+    const categoryModel = getModel(categoryName);
+
+    // Fetch data from the collections
     const foodCategory = await categoryModel.find({}).exec();
     const foodItems = await foodModel.find({}).exec();
 
     if (foodCategory && foodItems)
-      res
-        .status(200)
-        .json({ foodItems: foodItems, foodCategory: foodCategory });
-    else res.status(404).send("Food Data not Found");
+      res.status(200).json({ foodItems, foodCategory });
+    else
+      res.status(404).send("Food Data not Found");
   } catch (error) {
-    //     console.log(error);
-    res.status(500).send("Error in Route");
+    res.status(500).send(`Error in Route: ${error}`);
   }
 });
+
+// Function to create or reuse models
+function getModel(modelName) {
+  if (!models[modelName]) {
+    models[modelName] = mongoose.model(modelName, new mongoose.Schema({}), modelName);
+  }
+  return models[modelName];
+}
 
 module.exports = router;

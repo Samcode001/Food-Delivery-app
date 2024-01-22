@@ -10,6 +10,9 @@ const order =new Schema({
         required:true,
         unique:true
     },
+    restrauntName:{
+        type:String
+    },
     order_data:{
         type:Array,
         required:true

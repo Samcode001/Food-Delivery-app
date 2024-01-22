@@ -7,8 +7,6 @@ const Food_items = (props) => {
 
   const foodData=props.food_items_data;
   const currentCategory=props.currentCategory;
-  // const {searchValue}=useSearchContext();
-
 
   return (
     <>

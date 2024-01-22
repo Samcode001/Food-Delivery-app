@@ -6,7 +6,7 @@ const authenticateJwt = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
       const token = authHeader.split(" ")[1];
-      console.log(token);
+      // console.log(token);
       jwt.verify(token, SECRET, (err, payload) => {
         if (err)
           return res.status(401).json({ message: "UnAuthorised", error: err });

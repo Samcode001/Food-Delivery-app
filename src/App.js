@@ -10,6 +10,7 @@ import { CartProvider } from "./context/ContextReducer";
 import MyOrder from "./components/Myorder";
 import OrderSuccess from './components/OrderSuccess.jsx'
 import { RecoilRoot } from "recoil";
+import Food_category from "./components/Food_category.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Home />}></Route>
+              <Route path="/category" element={<Food_category />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/signup" element={<SignUp />}></Route>
               <Route exact path="/myorder" element={<MyOrder />}></Route>

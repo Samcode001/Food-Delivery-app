@@ -12,7 +12,7 @@ const Navbar = () => {
   let data = useCart();
 
   const navigate = useNavigate();
-//   const authToken = localStorage.getItem("authToken");
+  //   const authToken = localStorage.getItem("authToken");
   // console.log(authToken)
 
   const getUser = async () => {
@@ -32,9 +32,9 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getUser();
-  },[])
+  }, []);
 
   return (
     <>
@@ -77,23 +77,22 @@ const Navbar = () => {
                     </li>
                   </div>
                   <button className="btn">
-                    <Link to="#" className="login-btn">
-                      <div onClick={() => setCartView(true)}>
-                        My cart
-                        <span
-                          style={{
-                            backgroundColor: "red",
-                            color: "white",
-                            marginInlineStart: "6px",
-                            borderRadius: "100%",
-                            fontSize: "14px",
-                            padding: "3px",
-                          }}
-                        >
-                          {data.length}
-                        </span>
-                      </div>
-                    </Link>
+                    <div onClick={() => setCartView(true)}>
+                      My cart
+                      <span
+                        style={{
+                          backgroundColor: "red",
+                          color: "white",
+                          marginInlineStart: "6px",
+                          borderRadius: "100%",
+                          fontSize: "14px",
+                          padding: "3px",
+                        }}
+                      >
+                        {data.length}
+                      </span>
+                    </div>
+                    <Link to="#" className="login-btn"></Link>
                   </button>
                   {cartView ? (
                     <Modal onClose={() => setCartView(false)}>

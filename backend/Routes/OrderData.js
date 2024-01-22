@@ -1,12 +1,26 @@
 const express = require("express");
 const order = require("../Modals/order");
+const restrauntOrders = require("../Modals/restrauntOrders");
+const User = require("../Modals/User");
 const router = express.Router();
-const razorpay = require("../Modals/razorapy");
 
 router.post("/orderData", async (req, res) => {
   let data = req.body.order_data;
-  await data.splice(0, 0, { order_date: req.body.order_date }); // Merging the two data coming from the frontend
+  await data.splice(0, 0, {
+    order_date: req.body.order_date,
+    restraunt: req.body.restrauntName,
+  }); // Merging the two data coming from the frontend
 
+  const user = await User.findOne({ email: req.body.email });
+
+  const newOrder = new restrauntOrders({
+    name: user.name,
+    restrauntName: req.body.restrauntName,
+    orderData: req.body.order_data,
+    orderDate: req.body.order_date,
+  });
+
+  await newOrder.save();
   let userEmail = await order.findOne({ email: req.body.email });
   // console.log("backend", req.body.email, userEmail);
   if (userEmail === null) {
@@ -85,9 +99,19 @@ router.post("/orderData", async (req, res) => {
   // });
 });
 
+router.post("/restrauntOrders", async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    const orders = await restrauntOrders.find({ restrauntName: name });
+    res.status(200).json({ orders: orders });
+  } catch (error) {
+    res.status(500).send(`Error in Route:${error}`);
+  }
+});
 router.post("/myorderData", async (req, res) => {
   try {
-    console.log('first')
+    console.log("first");
     let myData = await order.findOne({ email: req.body.email });
     res.json({ orderData: myData });
   } catch (error) {

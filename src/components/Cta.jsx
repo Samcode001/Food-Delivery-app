@@ -7,7 +7,7 @@ const Cta = () => {
             <div className="cta-section">
                 <div className="container">
                     <div className="content">
-                        <p>Home Delivery is Our goal.</p>
+                        <p>Happiness is Our goal.</p>
                     </div>
                     <div className="cta-button">
                         <button className="btn">Get Started</button>

@@ -5,6 +5,7 @@ import Add_Notification from "./Add_Notification";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { orderState } from "../store/order";
 import { foodDataState } from "../store/foodItem";
+import { useNavigate } from "react-router-dom";
 
 const Food_card = ({ options, id, foodItem }) => {
   // const id = props.id;
@@ -22,6 +23,7 @@ const Food_card = ({ options, id, foodItem }) => {
 
   const [order, setOrder] = useRecoilState(orderState);
   const foodItems = useRecoilValue(foodDataState);
+  const navigate = useNavigate();
 
   // const handleAddToCart = async () => {
   //   setOrder((prevOrder) => [...prevOrder, id]);
@@ -85,10 +87,13 @@ const Food_card = ({ options, id, foodItem }) => {
   const handleAddToCart = async () => {
     setOrder((prevOrder) => [...prevOrder, id]);
 
+    const user = localStorage.getItem("userEmail");
+    if (!user) return navigate("/login");
+
     setAddNotification(true);
     setTimeout(() => {
       setAddNotification(false);
-    }, 2000);
+    }, 1000);
 
     const data = foodItems.filter((element) => element._id === id);
     console.log(data, order, foodItems);
