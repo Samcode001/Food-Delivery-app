@@ -87,7 +87,7 @@ const paymentVerification = async (req, res) => {
     //   // Database logic here
     // }
     res.redirect(
-      `https://food-delivery-42zn.onrender.com/paymentsuccess?reference=${razorpay_payment_id}`
+      `https://sam-foodiee-site.netlify.app/paymentsuccess?reference=${razorpay_payment_id}`
     );
     //  else {
     //   res.status(400).json({
