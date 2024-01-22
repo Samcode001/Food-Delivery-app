@@ -1,69 +1,83 @@
-
-.split{
-    height: 100vh;
-    margin-block:auto ;
-    display: grid;
-    grid-template-columns: 2fr 1.2fr;
-    /* justify-content: center; */
-    /* align-items: center; */
+.split {
+  height: 100vh;
+  margin-block: auto;
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
-.content-side{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    background-color: var(--primary-color-green);
+.content-side {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: var(--primary-color-green);
 }
 
-.content-side h1{
-    font-size: 8rem;
-    font-weight: 600;
-    color: white;
-    max-width: 15ch;
-    /* outline: 2px solid red; */
-    padding-left: 4rem;
+.content-side h1 {
+  font-size: clamp(2rem, 10vw, 8rem);
+  font-weight: 600;
+  color: white;
+  max-width: 15ch;
+  /* outline: 2px solid red; */
+  padding-left: 4rem;
 }
 
-.form-side{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-form{
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+input {
+  width: 25rem;
+  padding: 0.6rem 1rem;
+  outline: 2px solid var(--primary-color-green);
+  border: 0;
+  border-radius: 1rem;
+}
+input::placeholder {
+  color: gray;
+}
+
+input:focus-visible {
+  outline: 2px solid gray;
+}
+
+input[type="password"] ~ span {
+  color: rgb(221, 106, 106);
+  font-size: 0.85rem;
+  position: relative;
+  left: 10px;
+}
+
+.button-area button {
+  margin-inline-end: 1rem;
+}
+
+.shift-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 47em) {
+  .split {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-}
-
-input{
-    width: 25rem;
+    gap: 5rem;
+    padding: 4rem 0rem;
+  }
+  input {
+    width: 18rem;
     padding: 0.6rem 1rem;
     outline: 2px solid var(--primary-color-green);
     border: 0;
     border-radius: 1rem;
-}
-input::placeholder{
-    color: gray;
-
-}
-
-input:focus-visible{
-    outline: 2px solid gray;
-}
-
-input[type="password"]~span{
-    color: rgb(221, 106, 106);
-    font-size: 0.85rem;
-    position: relative;
-    left: 10px;
-}
-
-.button-area button{
-margin-inline-end: 1rem;
-}
-
-.shift-link{
- text-decoration: none;
- color: inherit;
+  }
 }

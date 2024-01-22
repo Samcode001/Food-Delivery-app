@@ -42,7 +42,7 @@ const SignUp = () => {
       return alert("please fill All fields Correct");
     }
 
-      navigate('/login');
+      navigate('/');
       localStorage.setItem('token',data.token)
 
   }
