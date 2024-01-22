@@ -23,7 +23,7 @@ const Food_category = () => {
   const dataName = qurieParams.get("data");
   const restrauntName = qurieParams.get("name").replace("%", " ");
 
-  // localStorage.setItem("resName", restrauntName);
+  localStorage.setItem("resName",restrauntName)
 
   const handleSubmit = async (e) => {
     // let response = await fetch(`http://localhost:5000/api/fooditems`, {
@@ -54,9 +54,7 @@ const Food_category = () => {
 
   useEffect(() => {
     handleSubmit();
-    const encodedData = encodeURIComponent(restrauntName);
-    localStorage.setItem("resName", encodedData);
-    // localStorage.setItem("resName",restrauntName)
+     localStorage.setItem("resName",restrauntName)
   }, []);
 
   // const getCurrentCategory=(e)=>{

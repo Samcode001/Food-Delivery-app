@@ -9,31 +9,37 @@ import axios from "axios";
 const Navbar = () => {
   const [cartView, setCartView] = useState(false);
   const [user, setUser] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   let data = useCart();
 
   const navigate = useNavigate();
   //   const authToken = localStorage.getItem("authToken");
   // console.log(authToken)
 
-  const getUser = async () => {
-    const res = await axios.get("http://localhost:5000/api/me", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
-    if (res.status === 200) {
-      setUser(true);
-    }
+  // const getUser = async () => {
+  //   const res = await axios.get("http://localhost:5000/api/me", {
+  //     headers: {
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   });
+  //   if (res.status === 200) {
+  //   }
+  // };
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
     localStorage.removeItem("userEmail");
     navigate("/login");
   };
 
   useEffect(() => {
-    getUser();
+    // getUser();
+    const user = localStorage.getItem("userEmail");
+    if (user) setUser(true);
   }, []);
 
   return (
@@ -61,11 +67,26 @@ const Navbar = () => {
                   ""
                 )}
               </nav>
+              <div className="hamburger-menu-container">
+                <div
+                  className={`hamburger ${isOpen ? "open" : ""}`}
+                  onClick={handleToggle}
+                >
+                  {console.log(isOpen)}
+                  <div className="bar"></div>
+                  <div className="bar"></div>
+                  <div className="bar"></div>
+                </div>
+              </div>
             </div>
-            <button style={{ display: "none" }} className="mobile-nav-toggle">
-              <span className="visually-hidden">Hamburger Menu</span>
-            </button>
-            <div className="right-nav">
+            <div
+              className="right-nav"
+              style={
+                isOpen
+                  ? { inset: "0rem 0rem 0rem 12rem" }
+                  : { inset: "0rem 0rem 0rem 120rem" }
+              }
+            >
               {user ? (
                 <ul className="nav-button-area flex">
                   <div className="display-md-none">
@@ -113,12 +134,12 @@ const Navbar = () => {
               ) : (
                 <ul className="nav-button-area flex">
                   <div className="display-md-none">
-                    <li>
+                    {/* <li>
                       <Link to="/">Home</Link>
                     </li>
                     <li>
                       <a href="#">My Orders</a>
-                    </li>
+                    </li> */}
                   </div>
                   <button className="btn">
                     <Link to="/login" className="login-btn">

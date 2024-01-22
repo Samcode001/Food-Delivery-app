@@ -46,41 +46,43 @@ const MyOrder = () => {
                             <hr />
                           </div>
                         ) : (
-                          <div className="col-12 col-md-6 col-lg-3">
-                            <div
-                              className="card mt-3"
-                              style={{ width: "16rem", maxHeight: "360px" }}
-                            >
-                              <img
-                                src={arrayData.img}
-                                className="card-img-top"
-                                alt="..."
-                                style={{
-                                  height: "80px",
-                                  objectFit: "cover",
-                                  aspectRatio: "1",
-                                }}
-                              />
-
-                              <h5 className="card-title">{arrayData.name}</h5>
-                              <span className="m-1">
-                                <span style={{ display: "inline-block" }}>
-                                  Qty
+                          <div className="card-container">
+                            <div className="card">
+                              <div
+                                className="myorder-image"
+                                style={{ width: "16rem", maxHeight: "360px" }}
+                              >
+                                <img
+                                  src={arrayData.img}
+                                  className="card-img-top"
+                                  alt="..."
+                                  style={{
+                                    width:"420px",
+                                    height: "180px",
+                                    objectFit: "cover",
+                                    aspectRatio: "1",
+                                  }}
+                                />
+                                <h5 className="card-title">{arrayData.name}</h5>
+                                <span className="m-1">
+                                  <span >
+                                    Qty
+                                  </span>
+                                  {arrayData.qty}
                                 </span>
-                                {arrayData.qty}
-                              </span>
-                              <span className="m-1">
-                                <span style={{ display: "inline-block" }}>
-                                  Size
+                                <span className="m-1">
+                                  <span >
+                                    Size
+                                  </span>
+                                  {arrayData.size}
                                 </span>
-                                {arrayData.size}
-                              </span>
-                              <span className="m-1">
-                                <span style={{ display: "inline-block" }}>
-                                  Price
-                                </span>{" "}
-                                ₹{arrayData.price}/-
-                              </span>
+                                <span className="m-1">
+                                  <span >
+                                    Price
+                                  </span>{" "}
+                                  ₹{arrayData.price}/-
+                                </span>
+                              </div>
                             </div>
                           </div>
                         )}

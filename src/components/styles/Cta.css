@@ -29,3 +29,15 @@ z-index: -1;
   font-weight: 600;
 }
 
+
+@media screen and (max-width: 47em) {
+    .container {
+      display: flex;
+      flex-direction: column;
+  
+    }
+
+    .content>p{
+        text-align: center;
+    }
+  }
