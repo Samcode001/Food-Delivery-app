@@ -17,7 +17,7 @@ const Navbar = () => {
   // console.log(authToken)
 
   // const getUser = async () => {
-  //   const res = await axios.get("http://localhost:5000/api/me", {
+  //   const res = await axios.get("https://food-delivery-42zn.onrender.com/api/me", {
   //     headers: {
   //       Authorization: "Bearer " + localStorage.getItem("token"),
   //     },

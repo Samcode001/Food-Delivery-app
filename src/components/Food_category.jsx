@@ -26,7 +26,7 @@ const Food_category = () => {
   localStorage.setItem("resName",restrauntName)
 
   const handleSubmit = async (e) => {
-    // let response = await fetch(`http://localhost:5000/api/fooditems`, {
+    // let response = await fetch(`https://food-delivery-42zn.onrender.com/api/fooditems`, {
     //   method: "GET",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const Food_category = () => {
     // });
     // const data = await response.json();
     const { data } = await axios.post(
-      "http://localhost:5000/api/fooditems",
+      "https://food-delivery-42zn.onrender.com/api/fooditems",
       {
         categoryName: categoryName,
         dataName: dataName,

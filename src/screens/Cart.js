@@ -32,7 +32,7 @@ const Cart = () => {
 
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
-    let response = await fetch(`http://localhost:5000/api/orderData`, {
+    let response = await fetch(`https://food-delivery-42zn.onrender.com/api/orderData`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,10 +54,10 @@ const Cart = () => {
   const handlePayment = async (amount) => {
     const {
       data: { key },
-    } = await axios.get("http://localhost:5000/getkey");
+    } = await axios.get("https://food-delivery-42zn.onrender.com/getkey");
     const {
       data: { order },
-    } = await axios.post("http://localhost:5000/checkout", {
+    } = await axios.post("https://food-delivery-42zn.onrender.com/checkout", {
       amount,
     });
 
@@ -69,7 +69,7 @@ const Cart = () => {
       description: "Test Transaction",
       image: "https://example.com/your_logo",
       order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      callback_url: "http://localhost:5000/paymentVerification",
+      callback_url: "https://food-delivery-42zn.onrender.com/paymentVerification",
       prefill: {
         name: "Gaurav Kumar",
         email: "gaurav.kumar@example.com",

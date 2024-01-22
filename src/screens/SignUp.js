@@ -17,7 +17,7 @@ const SignUp = () => {
 
   const handleSubmit=async(e)=>{
    e.preventDefault(); 
-    let response=await fetch("http://localhost:5000/api/signup",{
+    let response=await fetch("https://food-delivery-42zn.onrender.com/api/signup",{
       method:"POST",
       headers:{
         'Content-Type':"application/json"

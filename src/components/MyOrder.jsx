@@ -6,7 +6,7 @@ import "../components/styles/Myorder.css";
 const MyOrder = () => {
   const [orderData, setOrderData] = useState("");
   const fetchMyOrder = async () => {
-    await fetch("http://localhost:5000/api/myOrderData", {
+    await fetch("https://food-delivery-42zn.onrender.com/api/myOrderData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
